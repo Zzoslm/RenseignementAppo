@@ -1,0 +1,974 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+/* ===== CLASSIFIED ARCHIVE REDESIGN ===== */
+:root{color-scheme:dark;--bg:#090d12;--panel:#101720;--panel2:#151f2a;--ink:#e8edf2;--muted:#8493a2;--line:#263544;--accent:#c49a55;--accent-soft:#2a241a;--c-agent:#c49a55;--c-hier:#8b9eae;--c-contact:#6e9eae;--c-surv:#bd6a61;--c-tiers:#758493;--c-groupe:#9b83bb;--t-v:#77b895;--t-r:#d2aa62;--t-h:#a69ad8;--t-i:#d17d8b;--shadow:0 14px 40px rgba(0,0,0,.28)}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:'IBM Plex Sans',Arial,sans-serif;background-image:radial-gradient(ellipse at 50% -20%,rgba(75,99,120,.18),transparent 55%),linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);background-size:auto,32px 32px,32px 32px}
+.wrap{max-width:1500px;padding:30px 28px 70px}
+header.top{border-bottom:1px solid #354555;padding:10px 0 24px;margin-bottom:22px;align-items:center}
+h1{font:500 clamp(27px,4vw,40px)/1.05 'IBM Plex Sans',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.sub{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#91a0ae;margin-top:9px}
+.stamp{font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.2em;color:#d5ad6d;border:1px solid #927344;border-radius:2px;transform:none;padding:8px 12px;background:rgba(196,154,85,.07);opacity:1}
+.counters{gap:9px;margin:0 0 20px}.counter{background:linear-gradient(145deg,#141e28,#0e151d);border:1px solid #2b3b4b;border-radius:4px;padding:10px 15px;color:#8e9eac;font-size:11px;letter-spacing:.06em;text-transform:uppercase}.counter b{font-size:21px;color:#e6c58f;font-weight:500}
+nav.tabs{gap:5px;border-bottom:1px solid var(--line);margin-bottom:20px}nav.tabs button{font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:transparent;color:#8b9aa8;border:1px solid transparent;border-radius:3px 3px 0 0;padding:12px 18px}nav.tabs button[aria-selected=true]{background:#141e28;color:#e6c58f;border-color:#354555;border-bottom-color:#141e28;box-shadow:inset 0 2px 0 var(--accent)}
+.layout{grid-template-columns:320px minmax(0,1fr);gap:20px}.rail,.panel{background:rgba(15,22,30,.96);border:1px solid #2b3a49;border-radius:4px;box-shadow:var(--shadow)}.rail{padding:15px;top:12px;max-height:calc(100vh - 24px)}
+.search{background:#0a1118;border:1px solid #344555;border-radius:3px;color:#e9eef3;padding:12px 13px;font-size:13px}.search::placeholder{color:#667787}.fbtn{border-radius:2px;border-color:#344555;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px}.fbtn[aria-pressed=true]{background:#c49a55;color:#10151b;border-color:#c49a55}
+.grp{font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.17em;color:#c49a55;margin:19px 3px 7px}.row{border-radius:3px;padding:9px 8px;font-size:12.5px;color:#dce3e9}.row:hover{background:#1a2733}.row[aria-current=true]{background:#242a2d;box-shadow:inset 2px 0 0 #c49a55}.row small{font-size:10.5px;color:#8292a0;margin-top:2px}
+.folder{background:linear-gradient(150deg,#141e28,#101720 65%);border:1px solid #354555;border-radius:3px;padding:28px 30px 32px;margin-top:22px;box-shadow:var(--shadow)}.folder .tab{background:#c49a55;color:#10151b;border:0;border-radius:2px 2px 0 0;font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.15em;padding:7px 13px;top:-26px}.folder h2{font:500 clamp(25px,3vw,35px)/1.15 'IBM Plex Sans',sans-serif;letter-spacing:.015em;margin:2px 0 6px}.alias{font-size:12px;color:#91a0ae;margin-bottom:18px}.folder .stamp{top:22px;right:24px;font-size:9px;max-width:180px;white-space:normal;text-align:center}
+.meta{background:#0b1219;border:1px solid #263544;border-radius:3px;padding:15px 17px;gap:12px 20px}.meta dt{font-size:9px;letter-spacing:.15em;color:#8494a3}.meta dd{font-size:12.5px;color:#e2e8ed}.sec{font:600 10px 'IBM Plex Sans',sans-serif;letter-spacing:.18em;color:#c49a55;margin:25px 0 12px}.sec::after{border-color:#354555}ul.facts{border-left:1px solid #455462;margin-left:5px}ul.facts li{padding:2px 0 14px 19px;font-size:13px;color:#d6dee5}ul.facts li::before{width:7px;height:7px;left:-5px;top:7px;background:#101720;border:1px solid #c49a55}.fd{font:500 10px 'IBM Plex Sans',sans-serif;color:#c49a55;letter-spacing:.08em}.badge{font-size:9px;border-radius:2px;padding:1px 6px;letter-spacing:.04em}.src{font-size:10.5px;color:#8493a2}.chip{background:#0c141c;border:1px solid #344555;border-radius:3px;color:#dce5ec;font-size:11.5px;padding:7px 10px}.chip:hover{border-color:#c49a55;background:#17222d}.chip em{font-size:10px;color:#8b9aa8}.callout{background:#241e17;border-left:2px solid #c49a55;border-radius:2px;color:#d7c5a8;padding:12px 15px;font-size:12px}.callout b{color:#e2bb7c}.empty{color:#7e8e9d;font-size:12px}.panel{padding:18px}.legend{font-size:10px;letter-spacing:.05em}svg#graph{background:#0b1219;border:1px solid #2a3948;border-radius:3px}.gedge{stroke:#c49a55;opacity:.25}.gedge.hi{opacity:.95}.gnode text{fill:#dce5ec;stroke:#0b1219}.elabel{fill:#e0b66f;stroke:#0b1219}.btn{background:#c49a55;color:#10151b;border-radius:2px;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.tl{border-left:1px solid #596775}.tl .d::before{background:#c49a55;border-radius:1px}.tl .dt{font:600 11px 'IBM Plex Sans',sans-serif;letter-spacing:.12em}.tl .ev{font-size:13px;color:#d6dee5}.note{font-size:11px;color:#81919f}.view{animation:archiveIn .22s ease-out}@keyframes archiveIn{from{opacity:.65;transform:translateY(4px)}to{opacity:1;transform:none}}
+@media(max-width:820px){.wrap{padding:20px 13px 45px}.layout{grid-template-columns:1fr}.rail{max-height:390px}.folder{padding:24px 17px}.folder .stamp{position:static;display:inline-block;margin-bottom:14px}.folder h2{font-size:27px}nav.tabs button{padding:10px 11px;font-size:9px}.counters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+</style></head><body>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archives confidentielles — Accès restreint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#e9e2d2; --panel:#f7f2e6; --panel2:#efe8d6; --ink:#241f18; --muted:#6a6150; --line:#cfc4ac;
+  --accent:#b3261e; --accent-soft:#f3d9d4;
+  --c-agent:#b3261e; --c-hier:#2f6b3f; --c-contact:#1f5f8b; --c-surv:#8a5a00; --c-tiers:#6b6256; --c-groupe:#5b3f8f;
+  --t-v:#2f6b3f; --t-r:#8a5a00; --t-h:#4b4a9c; --t-i:#a0245c;
+  --shadow:0 1px 0 rgba(0,0,0,.05),0 6px 18px rgba(60,40,10,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15130e; --panel:#201d16; --panel2:#29251b; --ink:#ece4d2; --muted:#a69c86; --line:#3b3629;
+    --accent:#ee6a62; --accent-soft:#3a1f1c;
+    --c-agent:#ee6a62; --c-hier:#6fc184; --c-contact:#6db3e6; --c-surv:#e2b04a; --c-tiers:#a69c86; --c-groupe:#b79af0;
+    --t-v:#6fc184; --t-r:#e2b04a; --t-h:#9d9cf0; --t-i:#f07ab0;
+    --shadow:0 1px 0 rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15130e; --panel:#201d16; --panel2:#29251b; --ink:#ece4d2; --muted:#a69c86; --line:#3b3629;
+  --accent:#ee6a62; --accent-soft:#3a1f1c;
+  --c-agent:#ee6a62; --c-hier:#6fc184; --c-contact:#6db3e6; --c-surv:#e2b04a; --c-tiers:#a69c86; --c-groupe:#b79af0;
+  --t-v:#6fc184; --t-r:#e2b04a; --t-h:#9d9cf0; --t-i:#f07ab0;
+  --shadow:0 1px 0 rgba(0,0,0,.4),0 6px 18px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:20px 16px 56px}
+header.top{display:flex;flex-wrap:wrap;gap:14px 24px;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:14px;margin-bottom:16px}
+h1{font:400 clamp(26px,5vw,38px)/1.05 "Special Elite",ui-monospace,monospace;margin:0;letter-spacing:.01em}
+.sub{color:var(--muted);margin:4px 0 0;font-size:13.5px}
+.stamp{font:400 13px "Special Elite",monospace;color:var(--accent);border:2px solid var(--accent);padding:3px 10px;border-radius:3px;transform:rotate(-3deg);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;opacity:.9}
+.counters{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.counter{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;color:var(--muted)}
+.counter b{font-size:18px;color:var(--ink);margin-right:4px;font-weight:600}
+nav.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:14px}
+nav.tabs button{font:inherit;font-weight:500;background:var(--panel2);color:var(--muted);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:9px 16px;cursor:pointer}
+nav.tabs button[aria-selected="true"]{background:var(--panel);color:var(--ink);box-shadow:inset 0 3px 0 var(--accent)}
+nav.tabs button:focus-visible,.chip:focus-visible,.row:focus-visible,.fbtn:focus-visible,input:focus-visible,.gnode:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.view{display:none}.view.on{display:block}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
+@media(max-width:820px){.layout{grid-template-columns:1fr}}
+.rail{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;position:sticky;top:8px;max-height:calc(100vh - 24px);overflow:auto;box-shadow:var(--shadow)}
+@media(max-width:820px){.rail{position:static;max-height:360px}}
+.search{width:100%;font:inherit;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 6px}
+.fbtn{font:inherit;font-size:12.5px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;padding:3px 10px;cursor:pointer}
+.fbtn[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grp{font:400 12px "Special Elite",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 2px 4px}
+.row{display:flex;align-items:center;gap:9px;width:100%;text-align:left;font:inherit;background:transparent;border:0;border-radius:7px;padding:6px 8px;cursor:pointer;color:var(--ink)}
+.row:hover{background:var(--panel2)}
+.row[aria-current="true"]{background:var(--accent-soft)}
+.dot{width:10px;height:10px;border-radius:50%;flex:none;background:var(--c-tiers)}
+.dot.sq{border-radius:2px}.dot.dm{border-radius:2px;transform:rotate(45deg) scale(.85)}
+.row small{color:var(--muted);display:block;font-size:12px;line-height:1.2}
+.folder{background:var(--panel);border:1px solid var(--line);border-radius:4px 12px 12px 12px;padding:22px 22px 24px;position:relative;box-shadow:var(--shadow);margin-top:26px}
+.folder .tab{position:absolute;top:-27px;left:-1px;background:var(--panel);border:1px solid var(--line);border-bottom:none;border-radius:10px 10px 0 0;padding:4px 14px;font:400 12px "Special Elite",monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.folder h2{font:400 clamp(24px,4vw,32px)/1.1 "Special Elite",monospace;margin:0 0 2px}
+.alias{color:var(--muted);margin:0 0 12px}
+.folder .stamp{position:absolute;top:18px;right:20px}
+@media(max-width:560px){.folder .stamp{position:static;display:inline-block;margin-bottom:10px}}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 18px;background:var(--panel2);border-radius:8px;padding:12px 14px;margin:10px 0 6px}
+.meta dt{font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.meta dd{margin:0 0 2px;font-weight:500}
+.sec{font:400 14px "Special Elite",monospace;letter-spacing:.1em;text-transform:uppercase;margin:22px 0 8px;display:flex;align-items:center;gap:10px}
+.sec::after{content:"";flex:1;border-top:1px dashed var(--line)}
+ul.facts{list-style:none;margin:0;padding:0;border-left:2px solid var(--line);margin-left:6px}
+ul.facts li{position:relative;padding:2px 0 12px 18px}
+ul.facts li::before{content:"";position:absolute;left:-6px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--panel);border:2px solid var(--ink)}
+.fd{font:400 12.5px "Special Elite",monospace;color:var(--muted);margin-right:6px}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;border:1px solid currentColor;border-radius:999px;padding:0 8px;margin-right:6px;vertical-align:1px;white-space:nowrap}
+.b-v{color:var(--t-v)}.b-r{color:var(--t-r)}.b-h{color:var(--t-h)}.b-i{color:var(--t-i)}
+.src{color:var(--muted);font-size:12.5px;margin-left:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:inherit;font-size:13.5px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;text-align:left}
+.chip:hover{border-color:var(--accent)}
+.chip em{font-style:normal;color:var(--muted);font-size:12.5px}
+.callout{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:4px 8px 8px 4px;padding:10px 14px;margin-top:20px;font-size:14px}
+.callout b{color:var(--accent)}
+.empty{color:var(--muted);padding:40px 10px;text-align:center}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px;box-shadow:var(--shadow)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin:0 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+svg#graph{width:100%;height:auto;display:block;background:var(--panel2);border-radius:8px;touch-action:manipulation}
+.gedge{stroke:var(--accent);stroke-width:1.2;opacity:.35;fill:none}
+.gedge.hi{opacity:1;stroke-width:2.2}
+.gnode{cursor:pointer}
+.gnode text{font-size:11px;fill:var(--ink);paint-order:stroke;stroke:var(--panel2);stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+.gnode.dim{opacity:.22}
+.elabel{font-size:10.5px;fill:var(--accent);paint-order:stroke;stroke:var(--panel2);stroke-width:3px;font-weight:600}
+.ginfo{margin-top:12px;min-height:56px}
+.ginfo ul{margin:6px 0 0;padding-left:18px;color:var(--muted);font-size:13.5px}
+.btn{font:inherit;font-weight:500;background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:7px 14px;cursor:pointer}
+.tl{border-left:2px solid var(--ink);margin-left:8px}
+.tl .d{position:relative;padding:0 0 16px 20px}
+.tl .d::before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;background:var(--accent);border-radius:2px;transform:rotate(45deg)}
+.tl .dt{font:400 14px "Special Elite",monospace;color:var(--accent)}
+.tl .ev{margin:3px 0 6px}
+ol.todo{padding-left:22px;margin:0}
+ol.todo li{margin:0 0 10px}
+.note{color:var(--muted);font-size:13px;margin-top:18px}
+</style>
+<style>
+/* ===== finitions ===== */
+h1,.folder h2{font-family:'Special Elite','IBM Plex Sans',monospace;font-weight:400;letter-spacing:.06em}
+h1{text-shadow:0 0 22px rgba(196,154,85,.18)}
+header.top .stamp{transform:rotate(-2.5deg);border:2px double #b08a4d;color:#e0b66f;box-shadow:0 0 0 1px rgba(196,154,85,.18)}
+nav.tabs{position:sticky;top:0;z-index:20;background:rgba(9,13,18,.92);backdrop-filter:blur(8px);margin-top:0}
+.rail{top:64px!important;max-height:calc(100vh - 78px)!important;overflow:auto;scrollbar-width:thin;scrollbar-color:#354555 transparent}
+.alert{display:flex;gap:14px;align-items:flex-start;margin:0 0 20px;padding:15px 18px;background:linear-gradient(100deg,#2a1b1a,#161017 70%);border:1px solid #6b3a37;border-left:3px solid #bd6a61;border-radius:3px;font-size:13px;line-height:1.55;color:#ecd8d4}
+.alert strong{color:#f0a79e;font-weight:600}.alert .chips{margin-top:10px}
+.pulse{flex:none;width:9px;height:9px;margin-top:6px;border-radius:50%;background:#e0796d;box-shadow:0 0 0 0 rgba(224,121,109,.6);animation:pl 2.2s ease-out infinite}
+@keyframes pl{to{box-shadow:0 0 0 12px rgba(224,121,109,0)}}
+.nw{font:600 9px 'IBM Plex Sans',sans-serif;font-style:normal;letter-spacing:.08em;text-transform:uppercase;color:#10151b;background:#e0796d;border-radius:2px;padding:1px 5px;margin:0 6px;vertical-align:1px}
+.folder{border-left:3px solid #c49a55;background:linear-gradient(150deg,#16212c,#101720 60%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(255,255,255,.012) 27px 28px)}
+.folder .tab{font-family:'Special Elite',monospace;font-weight:400;letter-spacing:.1em}
+ul.facts li{transition:background .15s}ul.facts li:hover{background:rgba(196,154,85,.05)}
+.gnode{cursor:pointer;transition:opacity .2s}.gnode.dim{opacity:.2}.gnode:hover circle,.gnode:hover rect{filter:brightness(1.25)}
+.gnode[data-id=ranki] circle{stroke:#f0d49a;stroke-width:3;filter:drop-shadow(0 0 7px rgba(240,212,154,.55))}
+.tl .d:last-child .dt{color:#f0a79e}.tl .d:last-child::before{background:#e0796d!important}
+:focus-visible{outline:2px solid #e6c58f;outline-offset:2px}
+@media(max-width:820px){.rail{position:static!important;max-height:390px!important}.alert{padding:13px}}
+@media(prefers-reduced-motion:reduce){.pulse,.view{animation:none}}
+</style>
+<style>
+/* ===== réseau + finitions v3 ===== */
+:root:root:root{color-scheme:dark;--bg:#090d12;--panel:#101720;--panel2:#151f2a;--ink:#e8edf2;--muted:#8493a2;--line:#263544;--accent:#c49a55;--accent-soft:#2a241a;--c-agent:#c49a55;--c-hier:#8b9eae;--c-contact:#6e9eae;--c-surv:#bd6a61;--c-tiers:#758493;--c-groupe:#9b83bb;--t-v:#77b895;--t-r:#d2aa62;--t-h:#a69ad8;--t-i:#d17d8b;--shadow:0 14px 40px rgba(0,0,0,.28)}
+html,body{background:#090d12!important;color:#e8edf2}
+svg#graph{background:#090d12;border:1px solid #2a3948;border-radius:4px;box-shadow:inset 0 0 80px rgba(0,0,0,.45)}
+svg#graph .gring{fill:none;stroke:#c49a55;stroke-opacity:.07;stroke-width:1;stroke-dasharray:3 7}
+svg#graph .gedge{fill:none;stroke:#7d8fa0;stroke-opacity:.5;stroke-width:1.3;transition:stroke-opacity .2s,stroke-width .2s}
+svg#graph .gedge.off{stroke-opacity:.05}
+svg#graph .gedge.hi{stroke:#e2bb7c;stroke-opacity:1;stroke-width:2.2;filter:drop-shadow(0 0 4px rgba(226,187,124,.55))}
+svg#graph .ghalo{opacity:.13;transition:opacity .2s}
+svg#graph .gnode:hover .ghalo,svg#graph .gnode.on .ghalo{opacity:.3}
+svg#graph .gcore{stroke:#090d12;stroke-width:3}
+svg#graph .gsel{fill:none;stroke:#f0d49a;stroke-width:1.6;stroke-dasharray:4 4;opacity:.9}
+svg#graph .gnode.hub .gcore{filter:drop-shadow(0 0 12px rgba(224,121,109,.7))}
+svg#graph .gnode text.glab{font:500 13px 'IBM Plex Sans',sans-serif;fill:#e8edf2;stroke:#090d12;stroke-width:5px;stroke-linejoin:round;paint-order:stroke;letter-spacing:.01em}
+svg#graph .gnode.hub text.glab{font:400 17px 'Special Elite',monospace;fill:#f0d49a}
+svg#graph .gnode.dim{opacity:.13}
+svg#graph .gpill rect{fill:#1a232d;stroke:#c49a55;stroke-width:1}
+svg#graph .gpill text{font:500 11.5px 'IBM Plex Sans',sans-serif;fill:#f0d49a}
+.legend{gap:8px 10px;margin-bottom:12px}.legend .lg{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;color:#aebbc7;background:#0c141c;border:1px solid #2b3b4b;border-radius:999px;padding:4px 12px}
+.legend .lg.note{border-style:dashed;color:#778898}
+.ginfo{min-height:70px}.gi{background:#0c141c;border:1px solid #2b3b4b;border-left:3px solid #c49a55;border-radius:3px;padding:15px 18px}
+.gi-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-bottom:12px}.gi-h strong{font:400 20px 'Special Elite',monospace;color:#f0d49a}.gi-r{font-size:12px;color:#8fa0ae}
+.gi-b{display:flex;gap:10px;margin:14px 0 0}.btn{padding:9px 16px;cursor:pointer;border:1px solid #c49a55}.btn:not(.ghost){background:#c49a55;color:#10151b;font-weight:600}.btn.ghost{background:transparent;color:#c49a55}
+.counter{display:flex;align-items:baseline;gap:10px}.counter b{font:400 30px 'Special Elite',monospace;color:#f0d49a}
+.chip{transition:border-color .15s,background .15s}
+.panel{padding:22px}
+.tl{border-left:1px solid #3a4b5c;margin-left:10px}.tl .d{position:relative;padding:2px 0 26px 28px}
+.tl .d::before{left:-6px!important;top:7px!important;width:11px!important;height:11px!important;border-radius:50%!important;transform:none!important;background:#c49a55;box-shadow:0 0 0 4px #101720,0 0 14px rgba(196,154,85,.5)}
+.tl .dt{font-family:'Special Elite',monospace!important;font-weight:400!important;font-size:14px!important;color:#e6c58f}
+.tl .ev{max-width:78ch;line-height:1.6;margin:5px 0 9px}
+ol.todo{list-style:none;padding:0;margin:0;counter-reset:t;display:grid;gap:12px}
+ol.todo li{counter-increment:t;position:relative;background:#0b1219;border:1px solid #2a3948;border-left:3px solid #bd6a61;border-radius:3px;padding:15px 18px 15px 56px;font-size:13px;line-height:1.6;color:#d6dee5}
+ol.todo li::before{content:counter(t);position:absolute;left:18px;top:11px;font:400 22px 'Special Elite',monospace;color:#bd6a61}
+ol.todo li strong{color:#f0d49a;font-weight:600}ol.todo li .chip{margin-top:8px}
+.folder h2{font-size:clamp(28px,3.4vw,40px)}.folder .tab{box-shadow:0 -2px 0 rgba(0,0,0,.2)}
+.row{transition:background .15s}.search:focus{border-color:#c49a55;box-shadow:0 0 0 3px rgba(196,154,85,.15);outline:0}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.4));z-index:0}
+.wrap{position:relative;z-index:1}
+@media(max-width:820px){#v-toile .panel{overflow-x:auto;padding:14px}svg#graph{min-width:860px}.gi-b{flex-wrap:wrap}}
+/* ===== v4 : synthèse + animations ===== */
+h1{background:linear-gradient(100deg,#e8edf2 42%,#f0d49a 50%,#e8edf2 58%) 100% 0/250% 100% no-repeat;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:shim 4.5s 2.6s ease-in-out 1 forwards}
+@keyframes shim{to{background-position:0% 0}}
+.spot{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(430px circle at var(--mx,50%) var(--my,25%),rgba(196,154,85,.09),transparent 70%)}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+#boot{position:fixed;inset:0;z-index:100;background:#05080c;display:flex;flex-direction:column;align-items:center;justify-content:center;font:400 15px 'Special Elite',monospace;color:#c49a55;transition:opacity .7s,visibility .7s;cursor:pointer;padding:24px}
+#boot.done{opacity:0;visibility:hidden}
+#boot pre{margin:0;white-space:pre-wrap;line-height:2;min-height:8.5em;max-width:560px;width:100%;font:inherit}
+#boot .ok{color:#77b895}
+#boot .big{font-size:clamp(26px,6vw,54px);letter-spacing:.22em;color:#f0d49a;margin-top:18px;opacity:0;transform:scale(1.18);transition:opacity .5s,transform .5s;text-shadow:0 0 28px rgba(240,212,154,.45)}
+#boot .big.on{opacity:1;transform:none}
+#boot small{position:absolute;bottom:24px;color:#4a5b6c;font:400 11px 'IBM Plex Sans',sans-serif;letter-spacing:.12em}
+.syn-hero{position:relative;overflow:hidden;padding:40px 36px;margin-bottom:22px;background:linear-gradient(120deg,#1f1517,#0f1620 72%);border:1px solid #3a2a2c;border-left:3px solid #e0796d;border-radius:3px}
+.syn-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 40%,rgba(240,212,154,.08) 50%,transparent 60%);transform:translateX(-100%);animation:sweep 3.4s 1.2s ease-in-out 1}
+@keyframes sweep{to{transform:translateX(100%)}}
+.syn-k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#e0796d}
+.syn-hero h2{font:400 clamp(24px,3.4vw,40px)/1.25 'Special Elite',monospace;color:#f4e6c8;margin:12px 0 14px;max-width:24em}
+.syn-hero p{margin:0;font-size:14px;color:#aebbc7}
+.threats{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:16px}
+.th{position:relative;background:linear-gradient(160deg,#121b25,#0d141c);border:1px solid #2b3b4b;border-top:3px solid var(--lv);border-radius:3px;padding:24px 26px}
+.th:first-child{grid-column:1/-1}
+.th-lv{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--lv)}
+.th h3{font:400 clamp(20px,2.4vw,26px)/1.25 'Special Elite',monospace;color:#f4e6c8;margin:9px 0 10px}
+.th p{margin:0;font-size:14px;line-height:1.7;color:#c9d3dc;max-width:72ch}
+.meter{height:6px;margin:18px 0 6px;background:#1b2631;border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--lv),#f0d49a);box-shadow:0 0 12px var(--lv);transition:width 1.5s cubic-bezier(.2,.8,.2,1) .3s}
+.th.in .meter i{width:var(--w)}
+.meter-l{display:flex;justify-content:space-between;font-size:11px;color:#8493a2;margin-bottom:14px}
+.th:first-child{box-shadow:0 0 0 1px rgba(224,121,109,.12),0 0 38px rgba(224,121,109,.08)}
+.syn-t{font:400 22px 'Special Elite',monospace;color:#f0d49a;margin:36px 0 14px}
+.guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.gs{background:#0c141c;border:1px solid #263544;border-radius:3px;padding:20px;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.gs b{font:400 34px/1 'Special Elite',monospace;color:#c49a55}.gs p{margin:0;font-size:13.5px;line-height:1.6;color:#c9d3dc;flex:1}
+.legendfi{display:flex;flex-wrap:wrap;gap:12px 26px;margin-top:22px;padding:16px 18px;background:#0b1219;border:1px solid #263544;border-radius:3px;font-size:12px;color:#8fa0ae}
+.legendfi i{font-style:normal;margin-right:6px}
+svg#graph.intro .gedge{animation:draw 1.5s .2s ease-out both}
+svg#graph.intro .gnode{animation:fi .8s both}
+@keyframes draw{from{stroke-dasharray:1400;stroke-dashoffset:1400}to{stroke-dasharray:1400;stroke-dashoffset:0}}
+@keyframes fi{from{opacity:0}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}#boot{display:none}h1{color:#e8edf2;background:none}}
+@media(max-width:820px){.syn-hero{padding:28px 20px}.th{padding:20px}}
+</style>
+</head>
+<body>
+<div id="boot" aria-hidden="true"><pre></pre><div class="big">ACCÈS ACCORDÉ</div><small>Touche l'écran pour passer</small></div>
+<div class="spot" aria-hidden="true"></div>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Archives confidentielles</h1>
+      <p class="sub">CENTRE DE RENSEIGNEMENT · INDEX DES DOSSIERS · TENU PAR APOFFICE · MISE À JOUR 07.11.2026</p>
+    </div>
+    <div class="stamp">CLASSIFIÉ · ACCÈS RESTREINT</div>
+  </header>
+  <div class="counters" id="counters"></div>
+  <nav class="tabs" role="tablist" aria-label="Vues">
+    <button role="tab" aria-selected="true" data-view="synthese">Synthèse</button>
+    <button role="tab" aria-selected="false" data-view="dossiers">Index des dossiers</button>
+    <button role="tab" aria-selected="false" data-view="toile">Réseau relationnel</button>
+    <button role="tab" aria-selected="false" data-view="chrono">Chronologie</button>
+    <button role="tab" aria-selected="false" data-view="verif">Points en suspens</button>
+  </nav>
+
+  <section id="v-synthese" class="view on">
+    <div class="syn-hero rv"><span class="syn-k">Situation au 07.11.2026</span>
+      <h2>Un enlèvement se prépare, et une menace plane toujours sur Konoha.</h2>
+      <p>Voici l'essentiel en 30 secondes. Touche un nom pour ouvrir son dossier complet.</p></div>
+    <div class="threats">
+      <article class="th rv" style="--lv:#e0796d;--w:90%"><span class="th-lv">Priorité · critique</span>
+        <h3>L'enlèvement de Renji Ikawa</h3>
+        <p>Setsuna Akari veut enlever Renji Ikawa, qui a une prime sur sa tête. LeDamné lui a demandé de le ramener à Ame. Les deux commencent à travailler ensemble et Setsuna lui donne déjà des informations. Kayui Amatsugi veut l'aider, et veut aussi déserter Konoha.</p>
+        <div class="meter"><i></i></div><div class="meter-l"><span>Niveau de menace</span><span>Très élevé</span></div>
+        <div class="chips"><button class="chip" data-id="setsuna">Setsuna Akari</button><button class="chip" data-id="ledamne">LeDamné</button><button class="chip" data-id="renji">Renji Ikawa</button><button class="chip" data-id="kayui">Kayui Amatsugi</button></div></article>
+      <article class="th rv" style="--lv:#d2aa62;--w:75%"><span class="th-lv">Menace · élevée</span>
+        <h3>Rasen et les Chimères</h3>
+        <p>Rasen voudrait plonger Konoha dans un genjutsu : 15 membres, dont 4 infiltrés dans le village. Les Chimères, plutôt tournées vers la science, y seraient liées. Le Conseil des Cinq maîtrise le genjutsu.</p>
+        <div class="meter"><i></i></div><div class="meter-l"><span>Niveau de menace</span><span>Élevé</span></div>
+        <div class="chips"><button class="chip" data-id="rasen">Rasen</button><button class="chip" data-id="chimeres">Les Chimères</button><button class="chip" data-id="conseil5">Conseil des Cinq</button></div></article>
+      <article class="th rv" style="--lv:#d2aa62;--w:65%"><span class="th-lv">Menace · élevée</span>
+        <h3>Les désertions</h3>
+        <p>Edoga Akio, déserteur réfugié à Suna, et son disciple Raiga cherchent à rallier du monde. Rei Yumegiri, Masuro Anagaki et Kayui Amatsugi pensent eux aussi à quitter Konoha.</p>
+        <div class="meter"><i></i></div><div class="meter-l"><span>Niveau de menace</span><span>Élevé</span></div>
+        <div class="chips"><button class="chip" data-id="edoga">Edoga Akio</button><button class="chip" data-id="raiga">Raiga</button><button class="chip" data-id="rei">Rei Yumegiri</button><button class="chip" data-id="masuro">Masuro Anagaki</button></div></article>
+      <article class="th rv" style="--lv:#6e9eae;--w:45%"><span class="th-lv">Sous surveillance</span>
+        <h3>Les menaces extérieures</h3>
+        <p>À Ame, trois voix disent vouloir éradiquer Konoha. Un scientifique de Suna collecte les gènes de plusieurs clans.</p>
+        <div class="meter"><i></i></div><div class="meter-l"><span>Niveau de menace</span><span>Modéré</span></div>
+        <div class="chips"><button class="chip" data-id="trio">Trio hostile d'Ame</button><button class="chip" data-id="scientifique">Scientifique de Suna</button><button class="chip" data-id="eau">Pays de l'Eau</button></div></article>
+    </div>
+    <h3 class="syn-t rv">Comment lire ces archives</h3>
+    <div class="guide">
+      <div class="gs rv"><b>1</b><p>Ouvre l'<strong>index des dossiers</strong> : une fiche par personne, groupe ou lieu, avec ses faits datés.</p><button class="btn" data-view="dossiers">Voir les dossiers</button></div>
+      <div class="gs rv"><b>2</b><p>Regarde le <strong>réseau</strong> pour voir d'un coup d'œil qui est lié à qui.</p><button class="btn" data-view="toile">Voir le réseau</button></div>
+      <div class="gs rv"><b>3</b><p>Suis la <strong>chronologie</strong> pour comprendre comment l'histoire s'est déroulée.</p><button class="btn" data-view="chrono">Voir la chronologie</button></div>
+    </div>
+    <div class="legendfi rv"><span><i class="badge b-v">● Observé</i> vu directement</span><span><i class="badge b-r">◐ Rapporté</i> dit par quelqu'un</span><span><i class="badge b-h">? Hypothèse</i> déduction</span><span><i class="badge b-i">➜ Intention</i> ce qui est prévu</span></div>
+  </section>
+
+  <section id="v-dossiers" class="view">
+    <div class="layout">
+      <aside class="rail">
+        <input class="search" id="q" type="search" placeholder="Chercher un nom, un fait…" aria-label="Chercher">
+        <div class="filters" id="filters"></div>
+        <div id="list"></div>
+      </aside>
+      <div id="detail"></div>
+    </div>
+  </section>
+
+  <section id="v-toile" class="view">
+    <div class="panel">
+      <div class="legend" id="legend"></div>
+      <svg id="graph" viewBox="0 0 1000 700" role="img" aria-label="Réseau relationnel entre les dossiers"></svg>
+      <div class="ginfo" id="ginfo"><span class="note">Touche un nom pour voir ses liens, puis ouvre son dossier.</span></div>
+    </div>
+  </section>
+
+  <section id="v-chrono" class="view"><div class="panel"><div class="tl" id="tl"></div></div></section>
+
+  <section id="v-verif" class="view"><div class="panel"><p class="note" style="margin-top:0">Ce que je dois encore confirmer avant de transmettre mes rapports.</p><ol class="todo" id="todo"></ol></div></section>
+
+  <p class="note">Archives rédigées et tenues par Apoffice. Elles ne reprennent que ce que j'ai vu, entendu ou consigné dans mes rapports.</p>
+</div>
+
+<script>
+"use strict";
+var TAGS = {
+  v:["Observé","●"], r:["Rapporté","◐"], h:["Hypothèse","?"], i:["Intention","➜"]
+};
+var CATS = {
+  agent:["Agent","var(--c-agent)"], hier:["Hiérarchie","var(--c-hier)"], contact:["Contact / source","var(--c-contact)"],
+  surv:["À surveiller","var(--c-surv)"], tiers:["Tiers / témoin","var(--c-tiers)"], groupe:["Groupe","var(--c-groupe)"]
+};
+
+/* fait = [date, texte, tag, source] */
+var D = [
+/* ---------- PERSONNES ---------- */
+{id:"ranki",type:"personne",cat:"agent",name:"Apoffice",alias:"Auteur de ces archives",
+ role:"Auteur de ces archives",fiab:"Auteur",lieu:null,origine:"",meta:[],faits:[]},
+
+{id:"edoga",type:"personne",cat:"surv",name:"Edoga Akio",alias:"« E »",
+ role:"Déserteur de Konoha, mon ancien ami",fiab:"Récit de première main, puis rapporté",lieu:"suna",origine:"Konoha (police)",
+ meta:[["Lien avec moi","Ancien ami"],["Statut","Déserteur · réfugié à Suna"],["Dernier contact","24/10 (rencontre)"],["Disciple","Raiga"]],
+ faits:[
+  ["23/10","Je suis en discussion avec lui et je pense le rencontrer. Je veux d'abord lui faire croire qu'il peut me faire confiance, pour établir un plan commun et le capturer.","i","Rapport 23/10"],
+  ["24/10","Raconte pourquoi il a déserté. Un clan de Suna a lancé un ultimatum : Akari, qui avait insulté ce clan, et Raiga, son disciple, étaient menacés. Raiga lui a demandé de l'aide.","r","Rencontre du 24/10"],
+  ["24/10","Il a enlevé Akari pour le tuer et le livrer à Suna. Son plan était de rentrer ensuite à Konoha sans rien dire, mais tout Konoha l'a vu agir à Kokoro. Il a quand même livré Akari et Raiga l'a suivi.","r","Rencontre du 24/10"],
+  ["24/10","Lui a montré sa tenue, avec Raiga présent. Lui a proposé de les rejoindre à Suna et d'y réfléchir.","v","Rencontre du 24/10"],
+  ["après le 24/10","Ne répond plus à mes messages.","v"],
+  ["03/11","Selon la missive de Raiga, il aurait été tué par des ninjas de Konoha. Je ne sais pas si c'est vrai.","r","Missive de Raiga"]
+ ],
+ check:"Sa mort ne repose que sur la missive de Raiga."},
+
+{id:"raiga",type:"personne",cat:"surv",name:"Raiga",alias:"Shindo (mes notes) · Ywasaki (missive)",
+ role:"Disciple d'Edoga, réfugié à Suna",fiab:"Source directe (missives)",lieu:"suna",origine:"Konoha ? (disciple d'Edoga)",
+ meta:[["Nom de famille","À revérifier : Shindo ou Ywasaki"],["Disciple de","Edoga Akio"],["Contact","Missives"],["Statut","Rendez-vous en attente"]],
+ faits:[
+  ["24/10","Présent à Suna pendant ma rencontre avec Edoga.","v"],
+  ["03/11","Missive anonyme signée « R » : me reproche de ne pas avoir donné suite à sa proposition, m'invite à me tenir à ses côtés et laisse entendre qu'il agira autrement si je refuse. Je pense que c'est Raiga.","h","Missive anonyme"],
+  ["03/11","Annonce la mort d'E par missive et dit que l'offre tient toujours. Je réponds que je veux le voir seul.","v","Missives du 03/11"],
+  ["03/11","Accepte de le rencontrer seul et propose le côté du monastère, à 23h12.","v","Missive"],
+  ["03/11","Je lui réponds que je ne peux pas ce jour-là et que je reviendrai avec une date.","i"],
+  ["06/11","Pas de réponse. Je veux changer le lieu pour un endroit plus discret où l'appréhender.","i","Rapport 06/11"]
+ ],
+ check:"Je dois revérifier la missive pour donner le bon nom de famille le mois prochain."},
+
+{id:"akari_livre",type:"personne",cat:"tiers",name:"Akari (livré à Suna)",alias:"À ne pas confondre avec Setsuna Akari ?",
+ role:"Personne tuée et livrée par Edoga",fiab:"Rapporté (par Edoga)",lieu:"suna",origine:"Inconnue",
+ meta:[["Cause","A insulté un clan de Suna"],["Entourage","Était avec Raiga"],["Sort","Enlevé, tué et livré par Edoga"]],
+ faits:[["24/10","Aurait insulté un clan de Suna, ce qui a déclenché l'ultimatum contre lui et Raiga.","r","Récit d'Edoga"]],
+ check:"Même nom de famille que Setsuna Akari. Lien ou simple homonymie ?"},
+
+{id:"setsuna",type:"personne",cat:"surv",name:"Setsuna Akari",alias:"Mon ancien informateur",
+ role:"Trahit Konoha · contrat avec LeDamné",fiab:"Source directe",lieu:"konoha",origine:"Konoha",
+ meta:[["Lien avec moi","Travaillait à deux avec moi"],["Statut","Veut déserter"],["Dernier contact","06/11"],["Capture","Facile, je suis tout le temps avec lui"]],
+ faits:[
+  ["07/10","Travaille avec moi sur les détenteurs d'épées de la Brume à Suna.","v","Rapport épées de la Brume"],
+  ["29/10","Comportement suspect : veut trop d'informations, traîne avec des inconnus dans des lieux isolés, va au pays du Fer sans explication.","v","Rapport 29/10"],
+  ["06/11","Avoue avoir passé un contrat avec LeDamné : il en a assez de Konoha qui ne le valorise pas.","r","Rapport 06/11"],
+  ["06/11","Doit lui donner les plus grosses informations sur Konoha. Il veut les transmettre tout en restant à Konoha, puis fuir à Ame. Il a demandé l'exil.","r","Rapport 06/11"],
+  ["06/11","Tente de me convaincre d'accepter aussi, puis me menace si je parle. Il dit me faire confiance comme à un frère.","v","Rapport 06/11"],
+  ["06/11","Je lui ai fait croire que j'étais de son côté et j'attends les ordres de la hiérarchie.","i","Rapport 06/11"],
+  ["07/11","Veut enlever Renji Ikawa, qui a une prime sur sa tête.","r","Rapport 07/11"],
+  ["07/11","LeDamné lui a demandé de ramener Renji Ikawa à Ame. Ils commencent à travailler ensemble.","r","Rapport 07/11"],
+  ["07/11","Commence à donner des informations à LeDamné.","r","Rapport 07/11"],
+  ["07/11","Kayui Amatsugi veut l'aider dans cette opération.","r","Rapport 07/11"]
+ ]},
+
+{id:"renji",type:"personne",cat:"tiers",name:"Renji Ikawa",alias:"Cible d'un enlèvement",
+ role:"A une prime sur sa tête",fiab:"Rapporté",lieu:null,origine:"Inconnue",
+ meta:[["Menace","Enlèvement projeté par Setsuna Akari"],["Motif","Prime sur sa tête"],["Destination prévue","Amegakure, à la demande de LeDamné"]],
+ faits:[
+  ["07/11","Setsuna Akari veut l'enlever à cause de la prime sur sa tête.","r","Rapport 07/11"],
+  ["07/11","LeDamné a demandé à Setsuna de le ramener à Ame.","r","Rapport 07/11"],
+  ["07/11","Kayui Amatsugi veut aider Setsuna dans cet enlèvement.","r","Rapport 07/11"]
+ ]},
+
+{id:"kayui",type:"personne",cat:"surv",name:"Kayui Amatsugi",alias:"Complice de Setsuna",
+ role:"Veut aider Setsuna et déserter Konoha",fiab:"Rapporté",lieu:"konoha",origine:"Konoha",
+ meta:[["Statut","Veut déserter Konoha"],["Rôle","Appui de Setsuna dans l'enlèvement de Renji Ikawa"],["Dernier contact","07/11"]],
+ faits:[
+  ["07/11","Veut aider Setsuna Akari à enlever Renji Ikawa.","r","Rapport 07/11"],
+  ["07/11","Veut déserter le village de Konoha.","r","Rapport 07/11"]
+ ],
+ check:"Même nom de famille que Tsukiko Amatsugi. Lien ou simple homonymie ?"},
+
+{id:"ledamne",type:"personne",cat:"surv",name:"LeDamné",alias:"Informateur d'Ame",
+ role:"Dit tout connaître sur le genjutsu",fiab:"Non vérifié",lieu:"ame",origine:"Amegakure",
+ meta:[["Spécialité","Tout ce qui touche au genjutsu (selon lui)"],["Menace","M'a menacé de mort si je parle"],["Affiliation","Rasen, probablement (hypothèse)"]],
+ faits:[
+  ["02/11","Source des informations sur les Chimères, Rasen (15 membres, 4 infiltrés) et le Conseil des Cinq. Selon lui, Reimu Yumegiri serait mort et le Conseil des Cinq y serait lié.","r","Rapport du 01/11 (mis à jour)"],
+  ["06/11","A demandé à Setsuna les plus grosses informations sur Konoha pour la mettre en difficulté.","r","Rapport 06/11"],
+  ["06/11","A tenté de monter Setsuna contre moi en disant que je ne voulais pas trahir Konoha.","v","Rapport 06/11"],
+  ["06/11","Je lui dis que je ne donnerai aucune information et ne signerai aucun contrat. Il me menace de mort si je parle.","v","Rapport 06/11"],
+  ["07/11","Demande à Setsuna Akari de lui ramener Renji Ikawa à Ame. Ils commencent à travailler ensemble : Setsuna lui transmet déjà des informations.","r","Rapport 07/11"],
+  ["06/11","Veut du mal à Konoha et, d'après moi, à Suna aussi. Je le soupçonne d'appartenir à Rasen.","h","Rapport 06/11"]
+ ]},
+
+{id:"reimu",type:"personne",cat:"surv",name:"Reimu Yumegiri",alias:"Maître du genjutsu",
+ role:"Cible de mon enquête",fiab:"Rapporté",lieu:"konoha",origine:"Konoha (enseignait le genjutsu)",
+ meta:[["Enfants","Ray et Reika"],["Statut","Mort selon LeDamné · non confirmé"]],
+ faits:[
+  ["22/10","Réputé maître du genjutsu. Il aurait deux enfants, Ray et Reika, qui ne s'entendent pas : l'un a porté plainte contre l'autre.","r","Rapport 22/10"],
+  ["22/10","A arrêté d'enseigner le genjutsu du jour au lendemain. Il a dit à ses élèves que son fils avait été menacé par le Conseil des 5.","r","Un de ses élèves"],
+  ["22/10","Je pense que ce pourrait être un mensonge pour préparer une désertion du village.","h","Mon avis"],
+  ["02/11","Il serait mort, d'après LeDamné. Le Conseil des Cinq pourrait y être lié.","r","LeDamné"],
+  ["05/11","Selon son fils Rei, il faisait partie de Rasen.","r","Rei Yumegiri"]
+ ]},
+
+{id:"rei",type:"personne",cat:"surv",name:"Rei Yumegiri",alias:"Ray ?",
+ role:"Fils de Reimu, veut déserter",fiab:"Rapporté",lieu:"konoha",origine:"Konoha",
+ meta:[["Père","Reimu Yumegiri"],["Statut","À Konoha, veut déserter"],["Dernier contact","05/11"]],
+ faits:[
+  ["05/11","Est à Konoha et veut déserter : on ne l'écoute pas sur les informations qu'il donne et il en a assez.","r","Rapport 05/11"],
+  ["05/11","Dit être au courant de beaucoup de choses sur Rasen et que son père en faisait partie.","r","Rapport 05/11"],
+  ["05/11","Dit que sa sœur est morte, sans préciser comment.","r","Rapport 05/11"],
+  ["05/11","Je veux le garder au contact, lui demander des détails vérifiables et éviter qu'il déserte avant.","i","Rapport 05/11"]
+ ],
+ check:"Est-ce le même que Ray, le fils de Reimu ? Sa sœur serait-elle Reika ?"},
+
+{id:"ray_reika",type:"personne",cat:"tiers",name:"Ray & Reika Yumegiri",alias:"Enfants de Reimu",
+ role:"Fils et fille de Reimu Yumegiri",fiab:"Rapporté",lieu:"konoha",origine:"Konoha",
+ meta:[["Père","Reimu Yumegiri"],["Relation","Ne s'entendent pas"]],
+ faits:[["22/10","Ne s'entendent pas vraiment : l'un a porté plainte contre l'autre. Leur relation paraît étrange.","r","Rapport 22/10"]],
+ check:"Lien possible avec Rei Yumegiri."},
+
+{id:"soya",type:"personne",cat:"contact",name:"Dame Soya",alias:"Maîtresse d'Amegakure",
+ role:"Contact de premier plan à Ame",fiab:"Source directe",lieu:"ame",origine:"Amegakure",
+ meta:[["Accès","Missive qui m'a été remise"],["Passe-droit","Devrait accepter les demandes futures"]],
+ faits:[
+  ["22/10","Me remet sa missive et m'autorise à la contacter à chaque visite à Ame.","v","Rapport 22/10"],
+  ["22/10","Aurait un conseil, dont fait partie « Numéro 8 ».","r","Numéro 2"]
+ ]},
+
+{id:"numero2",type:"personne",cat:"contact",name:"« Numéro 2 »",alias:"Jeune garçon d'Ame",
+ role:"Source sur Numéro 8",fiab:"Rapporté",lieu:"ame",origine:"Amegakure",
+ meta:[["Particularité","Les petits d'Ame sont appelés par des chiffres"],["Lien","Considère Numéro 8 comme un père"]],
+ faits:[
+  ["22/10","Dit que Numéro 8 l'a sauvé et qu'il lui doit la vie.","r","Rapport 22/10"],
+  ["24/10","Reconnu au pays du Fer, avec les autres petits d'Ame.","v","Rapport pays du Fer"]
+ ]},
+
+{id:"numero8",type:"personne",cat:"tiers",name:"« Numéro 8 »",alias:"Membre du conseil de Dame Soya",
+ role:"Très fort, très dangereux, mais gentil (selon Numéro 2)",fiab:"Rapporté",lieu:"ame",origine:"Amegakure",
+ meta:[["Signes","Traces noires du visage au torse, un œil jaune"],["Dernier état connu","Battu, emporté par les petits"]],
+ faits:[
+  ["22/10","Décrit comme très fort, très dangereux et très gentil, sans vérification.","r","Numéro 2"],
+  ["24/10","Au pays du Fer, il discute avec un homme en noir, se bat contre lui et perd. Les petits l'emportent sur leurs épaules.","v","Rapport pays du Fer"]
+ ],
+ check:"Date de la scène à confirmer, j'ai supposé le 24/10."},
+
+{id:"hommes_noir",type:"personne",cat:"surv",name:"Hommes en noir",alias:"Shakuton et Raiton",
+ role:"Inconnus du pays du Fer",fiab:"Observé",lieu:"fer",origine:"Inconnue",
+ meta:[["Techniques","Shakuton et Raiton (le premier)"],["Nombre","Deux : un qui se bat, un qui soigne"]],
+ faits:[
+  ["24/10","Un homme tout en noir, maître du Shakuton et du Raiton, bat Numéro 8 puis part.","v","Rapport pays du Fer"],
+  ["24/10","Un autre homme, habillé de la même façon, arrive et essaie de soigner Numéro 8. Ils partent loin.","v","Rapport pays du Fer"]
+ ]},
+
+{id:"retsu",type:"personne",cat:"surv",name:"Retsu",alias:"Propriétaire d'un casino à Ame",
+ role:"Habitant d'Amegakure",fiab:"Mes impressions",lieu:"ame",origine:"Amegakure",
+ meta:[["Activité","Vient d'ouvrir un casino"],["Impressions","Instable, aime l'argent, faux sourire"]],
+ faits:[
+  ["22/10","Invite beaucoup de monde à tenter de faire fortune. Je pense qu'il cache beaucoup de choses.","h","Rapport 22/10"]
+ ]},
+
+{id:"scientifique",type:"personne",cat:"surv",name:"Scientifique de Suna",alias:"Nom inconnu",
+ role:"Collecte des échantillons de clans",fiab:"Rapporté",lieu:"suna",origine:"Suna",
+ meta:[["Objectif","Récupérer techniques ancestrales et gènes des clans"],["Cibles","Hyuga, Nara · exclut les Uchiha « maudits »"]],
+ faits:[
+  ["22/10","Cherchait quelqu'un pour entrer à Ame et rencontrer les scientifiques d'Amegakure. Il collecte empreintes, cheveux et traces génétiques.","r","Rapport 22/10"],
+  ["22/10","Veut rendre ces techniques accessibles à tous. Parle d'un projet sans en donner le détail.","r","Rapport 22/10"],
+  ["22/10","Il accepte de travailler avec moi, me croyant scientifique de Konoha. Je ne fournirai rien.","i","Rapport 22/10"]
+ ]},
+
+{id:"sena",type:"personne",cat:"contact",name:"Sena Shiki",alias:"Du pays du Fer",
+ role:"Dit travailler avec le Shogun",fiab:"Non vérifié",lieu:"fer",origine:"Pays du Fer",
+ meta:[["Offre","Échange d'informations"],["Mon plan","Lui donner de fausses informations"]],
+ faits:[
+  ["02/11","Je le rencontre. Il dit avoir beaucoup d'informations et rencontrer beaucoup de monde.","r","Rapport 02/11"],
+  ["02/11","Propose un échange. Je lui donnerai de fausses informations.","i","Rapport 02/11"]
+ ]},
+
+{id:"tsukiko",type:"personne",cat:"tiers",name:"Tsukiko Amatsugi",alias:"Victime d'un enlèvement",
+ role:"Déposition du 01/11",fiab:"Déposition",lieu:null,origine:"Famille Amatsugi",
+ meta:[["Faits","Enlèvement attribué aux Chimères"],["Lieux","Îlot près des marais, roche près du pays des Plages"],["Enquête","Menée par mes soins"]],
+ faits:[
+  ["01/11","Avec son ami Reka/Raika Fugaku, elle va à l'écart sur l'îlot près des frontières des marais. Un homme masqué lui met un kunai sous la gorge.","r","Déposition"],
+  ["01/11","Il les emmène à côté du pays des Plages et demande s'ils connaissent les membres haut placés de la scientifique. Elle donne de fausses informations ; il semblait connaître les vrais noms.","r","Déposition"],
+  ["01/11","Il dit « chimère » à la place de « scientifique », puis se corrige. Elle l'attaque avec Raika.","r","Déposition"],
+  ["01/11","Un policier aux longs cheveux verts la sauve et l'amène à l'hôpital.","r","Déposition"]
+ ]},
+
+{id:"masque",type:"personne",cat:"surv",name:"Homme masqué (koala)",alias:"Tenue lunatique ?",
+ role:"Auteur de l'enlèvement de Tsukiko",fiab:"Description de Tsukiko",lieu:null,origine:"Inconnue",
+ meta:[["Taille","Plutôt petite"],["Cheveux","Blancs, bouclés, mèches rouges"],["Masque","Koala"],["Tenue","Long manteau sable sans manches, logo blanc au dos"],["Technique","Maîtrise spectrale"]],
+ faits:[
+  ["01/11","Menace Tsukiko d'un kunai, interroge sur la « scientifique », dit « chimère » par erreur.","r","Déposition"],
+  ["02/11","Le logo en forme de lune pourrait correspondre à la « tenue lunatique », peut-être celle des Chimères.","h","Rapport 02/11"]
+ ]},
+
+{id:"raika",type:"personne",cat:"tiers",name:"Reka / Raika Fugaku",alias:"Ami de Tsukiko",
+ role:"Témoin et cible du masqué",fiab:"Déposition",lieu:null,origine:"Inconnue",
+ meta:[["Orthographe","Reka puis Raika dans la déposition"],["Particularité","Le masqué lui a déjà dit « toi, je te connais »"]],
+ faits:[
+  ["01/11","Voulait parler à Tsukiko et l'a conduite à l'écart. N'avait pas voulu donner d'informations au masqué.","r","Déposition"],
+  ["01/11","Attaque le masqué avec Tsukiko puis s'enfuit. Elle l'a vu à l'hôpital.","r","Déposition"]
+ ],
+ check:"À retrouver : témoin clé, mais aussi suspect possible."},
+
+{id:"policier_vert",type:"personne",cat:"tiers",name:"Policier aux cheveux verts",alias:"Cheveux verts longs",
+ role:"A sauvé Tsukiko",fiab:"Déposition",lieu:null,origine:"Police",
+ meta:[["Rôle","Témoin possible du lieu de l'enlèvement"]],
+ faits:[["01/11","Sauve Tsukiko et l'emmène à l'hôpital.","r","Déposition"]]},
+
+{id:"ren",type:"personne",cat:"surv",name:"Ren Orouka",alias:"Agresseur",
+ role:"Violent, menace de mort",fiab:"Rapporté",lieu:null,origine:"Inconnue",
+ meta:[["Menace","Trancher la gorge de Mikage Yamikure"]],
+ faits:[
+  ["24/10","A agressé la disciple de Zyna Hyuga. Il est resté très agressif, a sorti les poings et frappé en premier. Mikage s'est défendu.","r","Récit de Karim"],
+  ["24/10","Il est parti en menaçant de trancher la gorge de Mikage.","r","Récit de Karim"]
+ ],
+ check:"Date de l'altercation à confirmer."},
+
+{id:"zyna",type:"personne",cat:"tiers",name:"Zyna Hyuga",alias:"",
+ role:"Est allée voir Ren Orouka",fiab:"Rapporté",lieu:null,origine:"Clan Hyuga",
+ meta:[["Disciple","A été agressée par Ren Orouka"]],
+ faits:[["24/10","Elle et ceux qui l'accompagnaient sont allés demander à Ren pourquoi il avait agressé sa disciple.","r","Récit de Karim"]]},
+
+{id:"mikage",type:"personne",cat:"tiers",name:"Mikage Yamikure",alias:"",
+ role:"Menacé par Ren Orouka",fiab:"Rapporté",lieu:null,origine:"Inconnue",
+ meta:[["Menace","Ren Orouka a promis de lui trancher la gorge"]],
+ faits:[["24/10","Frappé en premier par Ren, il s'est défendu.","r","Récit de Karim"]]},
+
+{id:"flou",type:"personne",cat:"surv",name:"Le Flou des Ombres",alias:"Surnom",
+ role:"Membre du groupe à la lune, Pays de la Plage",fiab:"Rapporté",lieu:"plage",origine:"Pays de la Plage",
+ meta:[["Groupe","Rasen"],["Signe","Logo en forme de lune"]],
+ faits:[["02/11","Se trouve au Pays de la Plage et se fait appeler « le Flou des Ombres ».","r","Rapport 02/11"]]},
+
+{id:"trio",type:"personne",cat:"surv",name:"Trio hostile d'Ame",alias:"Trois voix inconnues",
+ role:"Disent vouloir éradiquer Konoha",fiab:"Entendu",lieu:"ame",origine:"Ame",
+ meta:[["Identité","Aucun nom, aucun visage"],["Menace","Contre Konoha et son Hokage"]],
+ faits:[
+  ["28/10","Je me glisse derrière un rocher à Ame, au risque d'être repéré, et j'entends trois personnes dire que Konoha est « la pire espèce » et qu'il faut l'éradiquer.","v","Rapport 28/10"],
+  ["28/10","J'en conclus qu'une organisation veut du mal à Konoha et à son Hokage.","h","Rapport 28/10"]
+ ]},
+
+{id:"masuro",type:"personne",cat:"surv",name:"Masuro Anagaki",alias:"Tenté par la désertion",
+ role:"Mon ami, veut déserter",fiab:"Source directe",lieu:"konoha",origine:"Konoha",
+ meta:[["Dernier contact","Missives (octobre)"]],
+ faits:[
+  ["03/10","Pendant un entraînement, deux hommes disent que tous les hokage sont corrompus et que Konoha ment, et invitent à les rejoindre dans la forêt interdite.","v","Rapport Masuro"],
+  ["03/10","Masuro et moi y allons ensemble ; personne ne vient. Masuro envoie des missives pour y retourner, approuve les deux hommes et veut déserter.","v","Rapport Masuro"]
+ ]},
+
+{id:"shao",type:"personne",cat:"surv",name:"Shao Yuan",alias:"Secte de l'immortalité · « Grue Céleste » ?",
+ role:"Double espion Ame / Konoha",fiab:"Rapporté (par lui)",lieu:null,origine:"Konoha, passe-droits à Ame",
+ meta:[["Secte","A des disciples ; nom incertain"],["Béret","Ancienne section, il en porte un"]],
+ faits:[
+  ["03/10","Se dit double espion pour Ame et Konoha, avec un collaborateur à Suna.","r","Rapport Shao Yuan"],
+  ["03/10","Glorifie Yoru Uchiha et juge le haut commandement corrompu.","r","Rapport Shao Yuan"],
+  ["03/10","Parle de la mort d'Aruma Senju, du chemin vers l'immortalité et de Kiri.","r","Rapport Shao Yuan"],
+  ["03/10","Ne répond plus à mes messages.","v","Rapport Shao Yuan"]
+ ]},
+
+/* ---------- HIERARCHIE ---------- */
+/* ---------- GROUPES ---------- */
+{id:"rasen",type:"groupe",cat:"groupe",name:"Rasen",alias:"Le groupe genjutsu",
+ role:"Voudrait plonger Konoha dans un genjutsu",fiab:"Rapporté (LeDamné, Rei)",lieu:null,origine:"Inconnue",
+ meta:[["Effectifs","15, dont 4 infiltrés à Konoha"],["Signe","Un groupe étrange porte un logo en forme de lune"],["Membre connu","Le Flou des Ombres"]],
+ faits:[
+  ["02/11","Voudrait plonger Konoha dans un genjutsu. 15 membres, dont 4 infiltrés dans le village.","r","LeDamné"],
+  ["02/11","Un groupe étrange porte un logo en forme de lune ; l'un de ses membres, au Pays de la Plage, se fait appeler « le Flou des Ombres ».","r","LeDamné"],
+  ["05/11","Reimu Yumegiri en faisait partie, selon son fils Rei.","r","Rei Yumegiri"],
+  ["06/11","Je pense que LeDamné en fait partie. Le groupe viserait Konoha et Suna.","h","Rapport 06/11"]
+ ]},
+
+{id:"chimeres",type:"groupe",cat:"groupe",name:"Les Chimères",alias:"Tenue lunatique ?",
+ role:"Unité ou secte tournée vers la science",fiab:"Rapporté",lieu:"eau",origine:"Inconnue",
+ meta:[["Nature","On peut les considérer comme une unité ou une secte"],["Tenue","Logo en forme de lune : « la tenue lunatique »"],["Pupilles Hakumei","Récemment données aux Chimères"]],
+ faits:[
+  ["01/11","Tsukiko affirme que l'enlèvement a été orchestré par eux.","r","Déposition"],
+  ["02/11","Groupe plutôt tourné vers la science. À rapprocher de Rasen selon mon enquête.","r","Rapport 02/11"],
+  ["02/11","La tenue lunatique est potentiellement la leur.","h","Rapport 02/11"]
+ ],
+ check:"Rasen et Chimères : même groupe, groupes liés ou distincts ?"},
+
+{id:"conseil5",type:"groupe",cat:"groupe",name:"Conseil des Cinq",alias:"« la Peste » en ferait partie",
+ role:"Maîtres du genjutsu",fiab:"Rapporté",lieu:null,origine:"Inconnue",
+ meta:[["Méthode","Tue ou « s'occupe » de ceux qui ne sont pas d'accord"],["Surnom","« La Peste »"]],
+ faits:[
+  ["22/10","Aurait menacé le fils de Reimu, qui désapprouvait l'usage du genjutsu.","r","Reimu, via un élève"],
+  ["02/11","Groupe de membres qui maîtrisent le genjutsu. Pourrait être lié à la mort de Reimu.","r","LeDamné"]
+ ]},
+
+{id:"epees",type:"groupe",cat:"groupe",name:"Épées de la Brume à Suna",alias:"Rapport du 07/10",
+ role:"Détenteurs d'artefacts à Suna",fiab:"Rapporté",lieu:"suna",origine:"Suna",
+ meta:[["Kiba","Yato Kurua (épées de foudre, double lame)"],["Hiramekarei","Choso Kuroghami, tokubetsu jonin"],["Lame lourde","Un chunin de Suna, récupère 20 % de l'ennemi abattu"],["Nuibari","Un jonin du clan Hoki, a tué Zero Amatsugi"]],
+ faits:[
+  ["07/10","Rapport fait avec Setsuna Akari sur ces quatre armes.","v","Rapport épées de la Brume"],
+  ["07/10","Un élève de Choso est sous pression constante à cause d'eux. Ils peuvent obtenir un rendez-vous avec Choso pour récupérer son épée.","r","Rapport épées de la Brume"]
+ ]},
+
+/* ---------- LIEUX ---------- */
+{id:"ame",type:"lieu",cat:"tiers",name:"Amegakure",alias:"Ame, pays de la Pluie",
+ role:"Zone d'observation",fiab:"—",lieu:null,origine:"",
+ meta:[["Accès","Passe-droit"]],
+ faits:[
+  ["22/10","J'obtiens un passe-droit et j'entre à Ame.","v","Rapport 22/10"],
+  ["28/10","Conversation hostile à Konoha entendue derrière un rocher.","v","Rapport 28/10"]
+ ]},
+{id:"fer",type:"lieu",cat:"tiers",name:"Pays du Fer",alias:"",
+ role:"Terrain d'observation et d'entraînement",fiab:"—",lieu:null,origine:"",meta:[],
+ faits:[
+  ["24/10","Scène Numéro 8 / homme en noir.","v","Rapport pays du Fer"],
+  ["29/10","Setsuna Akari s'y rend sans explication.","v","Rapport 29/10"]
+ ]},
+{id:"plage",type:"lieu",cat:"tiers",name:"Pays de la Plage",alias:"",
+ role:"Zone liée à Rasen et aux Chimères",fiab:"—",lieu:null,origine:"",meta:[],
+ faits:[["01/11","Le masqué emmène Tsukiko et Raika sur une petite roche à côté.","r","Déposition"]]},
+{id:"eau",type:"lieu",cat:"tiers",name:"Pays de l'Eau",alias:"",
+ role:"Deux familles rivales, jeux et enchères",fiab:"Rapporté",lieu:null,origine:"",meta:[],
+ faits:[
+  ["02/11","Deux familles ne s'entendent pas du tout et peuvent proposer de capturer des membres de la famille adverse.","r","Rapport 02/11"],
+  ["02/11","Elles proposent des jeux : une réussite donne des bonbons. Des ventes aux enchères récompensent celui qui en rapporte le plus (artefacts mineurs, métaux de chakra).","r","Rapport 02/11"],
+  ["02/11","Il y a très peu de temps, des pupilles Hakumei ont été données aux Chimères.","r","Rapport 02/11"]
+ ]},
+{id:"suna",type:"lieu",cat:"tiers",name:"Suna",alias:"",
+ role:"Village ennemi",fiab:"—",lieu:null,origine:"",meta:[],
+ faits:[
+  ["24/10","Edoga et Raiga s'y trouvent.","v","Rapport du 24/10"]
+ ]},
+{id:"monastere",type:"lieu",cat:"tiers",name:"Monastère",alias:"Rendez-vous proposé",
+ role:"Lieu choisi par Raiga",fiab:"—",lieu:null,origine:"",meta:[],
+ faits:[["03/11","Raiga le propose pour une rencontre seul à seul. Je veux changer de lieu.","v","Missives"]]},
+{id:"konoha",type:"lieu",cat:"tiers",name:"Konoha",alias:"",
+ role:"Village",fiab:"—",lieu:null,origine:"",meta:[],
+ faits:[
+  ["22/10","Les clans Hyuga et Nara sont des cibles de la collecte du scientifique de Suna.","h","Rapport 22/10"],
+  ["06/11","Setsuna veut transmettre des informations à LeDamné depuis Konoha.","r","Rapport 06/11"]
+ ]}
+];
+
+/* liens [a, b, relation] */
+var E = [
+ ["ranki","edoga","ancien ami, cible"],["ranki","raiga","missives, rendez-vous"],["ranki","setsuna","partenaire, informateur"],
+ ["ranki","ledamne","menacé par lui"],["ranki","soya","contact à Ame"],["ranki","numero2","rencontré"],["ranki","retsu","observé"],
+ ["ranki","scientifique","couverture de scientifique"],["ranki","sena","échange d'infos"],["ranki","trio","a espionné"],
+ ["ranki","masuro","ami tenté par la désertion"],["ranki","shao","rapport"],["ranki","rei","contact, veut déserter"],
+ 
+ ["edoga","raiga","disciple"],["edoga","akari_livre","l'a livré à Suna"],["raiga","akari_livre","était avec lui"],
+ ["setsuna","ledamne","contrat, échange d'infos"],["setsuna","renji","projette de l'enlever"],["ledamne","renji","veut le ramener à Ame"],["kayui","setsuna","veut l'aider"],["kayui","renji","complice de l'enlèvement"],["setsuna","epees","a travaillé dessus avec moi"],
+ ["ledamne","rasen","membre probable"],["ledamne","conseil5","source"],["ledamne","chimeres","source"],
+ ["reimu","rei","père de"],["reimu","ray_reika","père de"],["reimu","rasen","membre selon Rei"],["reimu","conseil5","fils menacé"],["reimu","ledamne","mort selon lui"],
+ ["rei","rasen","connaît le groupe"],["rei","ray_reika","même personne ?"],
+ ["rasen","flou","membre"],["rasen","chimeres","à rapprocher"],
+ ["chimeres","masque","tenue lunatique ?"],["masque","tsukiko","a enlevé"],["masque","raika","a déjà abordé"],
+ ["tsukiko","raika","amis"],["policier_vert","tsukiko","l'a sauvée"],
+ ["soya","numero8","conseil"],["numero2","numero8","considère comme un père"],["numero8","hommes_noir","combat"],
+ 
+ ["ren","zyna","a agressé sa disciple"],["ren","mikage","menace de mort"],["zyna","mikage","venus ensemble"],
+ 
+ ["sena","fer","vient de"]
+];
+
+var byId = {};
+D.forEach(function(d,i){ d.n = i+1; byId[d.id] = d; d.links = []; });
+E.forEach(function(e){
+  if(!byId[e[0]]||!byId[e[1]]) { console.warn("lien inconnu", e); return; }
+  byId[e[0]].links.push([e[1],e[2]]);
+  byId[e[1]].links.push([e[0],e[2]]);
+});
+
+var T = [
+ ["2026-10-03","03/10","Rapports Masuro Anagaki (tenté par la désertion) et Shao Yuan (secte, double espion).",["masuro","shao"]],
+ ["2026-10-07","07/10","Rapport sur les épées de la Brume, avec Setsuna Akari.",["epees","suna","setsuna"]],
+ ["2026-10-22","22/10","Rapport confidentiel : scientifique de Suna, entrée à Ame et Dame Soya, Numéro 2 et 8, Retsu, enquête sur Reimu.",["scientifique","soya","numero2","numero8","retsu","reimu"]],
+ ["2026-10-23","23/10","Contact avec Edoga Akio : il veut le rencontrer pour gagner sa confiance.",["edoga"]],
+ ["2026-10-24","24/10","Rencontre avec Edoga : récit de la désertion, proposition de rejoindre Suna. Raiga est présent.",["edoga","raiga","akari_livre"]],
+ ["2026-10-24","24/10 (à confirmer)","Pays du Fer : Numéro 8 battu par un homme en noir (Shakuton, Raiton).",["numero8","hommes_noir","numero2"]],
+ ["2026-10-24","24/10 (à confirmer)","Altercation avec Ren Orouka : il frappe en premier et menace Mikage.",["ren","zyna","mikage"]],
+ ["2026-10-28","28/10","À Ame, j'entends trois personnes parler d'éradiquer Konoha.",["trio"]],
+ ["2026-10-29","29/10","Setsuna Akari paraît suspect : trop de questions, fréquentations bizarres, voyages au pays du Fer.",["setsuna"]],
+ ["2026-11-01","01/11","Déposition de Tsukiko Amatsugi (enlèvement attribué aux Chimères) : j'enquête.",["tsukiko","masque","raika","policier_vert"]],
+ ["2026-11-02","02/11","Rapport sur les Chimères, Rasen, le Conseil des Cinq, le Pays de l'Eau. Source : LeDamné. Rencontre avec Sena Shiki.",["ledamne","chimeres","rasen","conseil5","eau","sena"]],
+ ["2026-11-03","03/11","Message anonyme « R », que j'attribue à Raiga. Annonce de la mort d'E, rendez-vous proposé au monastère.",["raiga","edoga","monastere"]],
+ ["2026-11-05","05/11","Rei Yumegiri veut déserter. Il dit que son père faisait partie de Rasen et que sa sœur est morte.",["rei","reimu","rasen"]],
+ ["2026-11-06","06/11","Setsuna avoue son contrat avec LeDamné. LeDamné et Setsuna me menacent. Raiga ne répond pas.",["setsuna","ledamne","raiga"]]
+];
+T.push(["2026-11-07","07/11","Setsuna Akari projette d'enlever Renji Ikawa, qui a une prime sur sa tête. LeDamné lui a demandé de le ramener à Ame : ils travaillent ensemble et Setsuna lui donne déjà des informations. Kayui Amatsugi veut l'aider et déserter Konoha.",["setsuna","ledamne","renji","kayui"]]);
+
+var V = [
+ ["Renji Ikawa : alerte à transmettre","Le projet d'enlèvement de Setsuna Akari, appuyé par Kayui Amatsugi, doit remonter à la hiérarchie. J'attends ses ordres.","renji"],
+ ["Kayui Amatsugi","Même nom de famille que Tsukiko Amatsugi : lien à établir.","kayui"],
+ ["Raiga : Shindo ou Ywasaki ?","Mes notes disent Shindo, la missive est signée Ywasaki. Je dois revérifier et donner le nom exact le mois prochain.","raiga"],
+ ["Rei Yumegiri est-il Ray ?","Reimu a deux enfants, Ray et Reika. Rei dit que sa sœur est morte : serait-ce Reika ?","rei"],
+ ["Akari et Setsuna Akari","Edoga a livré « Akari ». Setsuna porte le même nom de famille. Lien ou homonymie ?","akari_livre"],
+ ["Rasen et Chimères","J'ai écrit que les Chimères sont « plutôt à rapprocher de Rasen ». Même groupe, groupes liés ou distincts ? La tenue lunatique est citée pour les deux.","chimeres"],
+ ["Pupilles Hakumei","J'hésite entre « données aux Chimères » et « plutôt Rasen ». Je retiens « données aux Chimères ».","eau"],
+ ["Mort de Reimu","Elle ne vient que de LeDamné. Rei dit seulement que son père faisait partie de Rasen.","reimu"],
+ ["Mort d'Edoga","Elle ne vient que de la missive de Raiga.","edoga"],
+ ["Dates à confirmer","La scène du pays du Fer (Numéro 8) et l'altercation avec Ren Orouka. J'ai mis le 24/10.","numero8"],
+ ["Kokoro","Lieu où Edoga a agi devant tout Konoha. Je n'ai pas de dossier dessus.","edoga"],
+ ["Setsuna : ordres","J'attends les instructions de la hiérarchie sur Setsuna Akari.","setsuna"]
+];
+
+/* ---------- utilitaires ---------- */
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function $(s,r){ return (r||document).querySelector(s); }
+function pad(n){ return (n<10?"00":n<100?"0":"")+n; }
+function dotHtml(d){ var cls = d.type==="groupe"?"dot sq":d.type==="lieu"?"dot dm":"dot"; return '<span class="'+cls+'" style="background:'+CATS[d.cat][1]+'"></span>'; }
+function badge(t){ var x=TAGS[t]; return '<span class="badge b-'+t+'" title="'+x[0]+'">'+x[1]+' '+x[0]+'</span>'; }
+
+var state = {id:"ranki", q:"", type:"all", view:"synthese"};
+
+/* ---------- compteurs ---------- */
+(function(){
+  var p=D.filter(function(d){return d.type==="personne";}).length;
+  var g=D.filter(function(d){return d.type==="groupe";}).length;
+  var l=D.filter(function(d){return d.type==="lieu";}).length;
+  var f=0; D.forEach(function(d){ f+=d.faits.length; });
+  $("#counters").innerHTML =
+    '<div class="counter"><b>'+p+'</b>individus</div><div class="counter"><b>'+g+'</b>groupes</div>'+
+    '<div class="counter"><b>'+l+'</b>lieux</div><div class="counter"><b>'+f+'</b>faits consignés</div><div class="counter"><b>'+E.length+'</b>liens</div>';
+})();
+
+/* ---------- liste ---------- */
+var FILTERS=[["all","Tout"],["personne","Personnes"],["groupe","Groupes"],["lieu","Lieux"]];
+function renderFilters(){
+  $("#filters").innerHTML = FILTERS.map(function(f){
+    return '<button class="fbtn" data-f="'+f[0]+'" aria-pressed="'+(state.type===f[0])+'">'+f[1]+'</button>';
+  }).join("");
+}
+function matches(d){
+  if(state.type!=="all" && d.type!==state.type) return false;
+  if(!state.q) return true;
+  var q = state.q.toLowerCase();
+  var hay = [d.name,d.alias,d.role,d.origine].concat(d.faits.map(function(f){return f[1];})).concat(d.meta.map(function(m){return m[1];})).join(" ").toLowerCase();
+  return hay.indexOf(q)>-1;
+}
+function renderList(){
+  var groups = [["hier","Hiérarchie"],["agent","Agent"],["contact","Contacts et sources"],["surv","À surveiller"],["tiers","Tiers et témoins"],["groupe","Groupes"],["lieu","Lieux"]];
+  var html="", any=false;
+  groups.forEach(function(g){
+    var items = D.filter(function(d){
+      var key = d.type==="lieu"?"lieu":(d.type==="groupe"?"groupe":d.cat);
+      return key===g[0] && matches(d);
+    });
+    if(!items.length) return;
+    any=true;
+    html += '<div class="grp">'+g[1]+'</div>';
+    items.forEach(function(d){
+      html += '<button class="row" data-id="'+d.id+'" aria-current="'+(d.id===state.id)+'">'+dotHtml(d)+'<span>'+esc(d.name)+(d.faits.some(function(f){return f[0]==="07/11";})?'<i class="nw">nouveau</i>':'')+'<small>'+esc(d.role||d.alias)+'</small></span></button>';
+    });
+  });
+  $("#list").innerHTML = any?html:'<p class="empty">Aucun dossier ne correspond.</p>';
+}
+
+/* ---------- dossier ---------- */
+function chipHtml(id,rel){
+  var d=byId[id]; if(!d) return "";
+  return '<button class="chip" data-id="'+id+'">'+dotHtml(d)+esc(d.name)+(rel?'<em>'+esc(rel)+'</em>':'')+'</button>';
+}
+function renderDetail(){
+  var d = byId[state.id]; if(!d){ $("#detail").innerHTML='<p class="empty">Choisis un dossier.</p>'; return; }
+  var typeLabel = d.type==="personne"?"Personne":d.type==="groupe"?"Groupe":"Lieu";
+  var h = '<article class="folder"><div class="tab">ARCHIVE N° '+pad(d.n)+' · '+typeLabel+'</div>';
+  h += '<div class="stamp">'+esc(d.fiab&&d.fiab!=="—"?d.fiab:"archives")+'</div>';
+  h += '<h2>'+esc(d.name)+'</h2>';
+  h += '<p class="alias">'+esc([d.alias,d.role].filter(Boolean).join(" · "))+'</p>';
+  var meta = d.meta.slice();
+  if(d.origine) meta.unshift(["Origine",d.origine]);
+  if(d.lieu && byId[d.lieu] && d.type!=="lieu") meta.push(["Lieu",byId[d.lieu].name]);
+  if(meta.length){ h += '<dl class="meta">'+meta.map(function(m){return '<div><dt>'+esc(m[0])+'</dt><dd>'+esc(m[1])+'</dd></div>';}).join("")+'</dl>'; }
+  if(d.faits.length) h += '<div class="sec">Éléments consignés</div><ul class="facts">'+d.faits.map(function(f){
+    return '<li><span class="fd">'+esc(f[0])+'</span>'+(f[0]==="07/11"?'<span class="nw">nouveau</span>':"")+''+(f[2]?badge(f[2]):"")+esc(f[1])+(f[3]?'<span class="src">· '+esc(f[3])+'</span>':"")+'</li>';
+  }).join("")+'</ul>';
+  if(d.links.length){
+    h += '<div class="sec">Liens</div><div class="chips">'+d.links.map(function(l){return chipHtml(l[0],l[1]);}).join("")+'</div>';
+  }
+  if(d.type==="lieu"){
+    var here = D.filter(function(x){return x.lieu===d.id;});
+    if(here.length) h += '<div class="sec">Index des dossiers liés à ce lieu</div><div class="chips">'+here.map(function(x){return chipHtml(x.id,x.role);}).join("")+'</div>';
+  }
+  if(d.check){ h += '<div class="callout"><b>Points en suspens.</b> '+esc(d.check)+'</div>'; }
+  h += '</article>';
+  $("#detail").innerHTML = h;
+}
+function openDossier(id, scroll){
+  if(!byId[id]) return;
+  state.id = id;
+  setView("dossiers");
+  renderList(); renderDetail();
+  try{ history.replaceState(null,"","#"+id); }catch(e){}
+  if(scroll){ var el=$("#detail"); if(el && el.scrollIntoView) el.scrollIntoView({behavior:"smooth",block:"start"}); }
+}
+
+/* ---------- vues ---------- */
+function setView(v){
+  state.view=v;
+  document.querySelectorAll("nav.tabs button").forEach(function(b){ b.setAttribute("aria-selected", String(b.dataset.view===v)); });
+  document.querySelectorAll(".view").forEach(function(s){ s.classList.toggle("on", s.id==="v-"+v); });
+  if(v==="toile") drawGraph();
+}
+
+/* ---------- toile ---------- */
+var G = null, GW = 1200, GH = 780;
+function buildGraph(){
+  var mob = window.innerWidth <= 820;
+  GW = mob ? 900 : 1200; GH = mob ? 980 : 780;
+  var cx = GW/2, cy = GH/2, i, j;
+  var list = D.filter(function(d){return d.type!=="lieu";});
+  var nodes = list.map(function(d,k){
+    var a = k*2.399963+0.6, r = 130+(k%6)*48;
+    return {id:d.id,d:d,x:cx+Math.cos(a)*r*1.25,y:cy+Math.sin(a)*r*(mob?1.2:0.8),vx:0,vy:0,deg:0,w:Math.max(76,d.name.length*7+20),h:48};
+  });
+  var idx={}; nodes.forEach(function(n,k){idx[n.id]=k;});
+  var edges=[];
+  E.forEach(function(e){
+    if(idx[e[0]]==null||idx[e[1]]==null) return;
+    edges.push({a:idx[e[0]],b:idx[e[1]],label:e[2]}); nodes[idx[e[0]]].deg++; nodes[idx[e[1]]].deg++;
+  });
+  var hub = idx.ranki; nodes[hub].x=cx; nodes[hub].y=cy;
+  var ITER=800;
+  for(var it=0; it<ITER; it++){
+    var cool = Math.max(0.05, 1-it/ITER);
+    for(i=0;i<nodes.length;i++) for(j=i+1;j<nodes.length;j++){
+      var dx=nodes[i].x-nodes[j].x, dy=nodes[i].y-nodes[j].y, d2=dx*dx+dy*dy+40, dist=Math.sqrt(d2), f=30000/d2;
+      nodes[i].vx+=dx/dist*f; nodes[i].vy+=dy/dist*f; nodes[j].vx-=dx/dist*f; nodes[j].vy-=dy/dist*f;
+    }
+    edges.forEach(function(e){
+      var A=nodes[e.a],B=nodes[e.b],dx=B.x-A.x,dy=B.y-A.y,dist=Math.sqrt(dx*dx+dy*dy)+0.01;
+      var L=(e.a===hub||e.b===hub)?(mob?210:250):(mob?150:175), f=(dist-L)*0.012;
+      A.vx+=dx/dist*f; A.vy+=dy/dist*f; B.vx-=dx/dist*f; B.vy-=dy/dist*f;
+    });
+    nodes.forEach(function(n,k){
+      if(k===hub) return;
+      n.vx+=(cx-n.x)*0.003; n.vy+=(cy-n.y)*(mob?0.003:0.006);
+      n.x+=Math.max(-16,Math.min(16,n.vx))*cool; n.y+=Math.max(-16,Math.min(16,n.vy))*cool;
+      n.vx*=0.55; n.vy*=0.55;
+    });
+    if(it>120) for(i=0;i<nodes.length;i++) for(j=i+1;j<nodes.length;j++){
+      var P=nodes[i],Q=nodes[j];
+      var ox=(P.w+Q.w)/2+14-Math.abs(P.x-Q.x), oy=(P.h+Q.h)/2+6-Math.abs(P.y-Q.y);
+      if(ox>0&&oy>0){
+        var fa=i===hub?0:0.5, fb=j===hub?0:0.5; if(i===hub) fb=1; if(j===hub) fa=1;
+        if(oy<ox){ var sy=(P.y<Q.y?-1:1)*oy; P.y+=sy*fa; Q.y-=sy*fb; }
+        else { var sx=(P.x<Q.x?-1:1)*ox; P.x+=sx*fa; Q.x-=sx*fb; }
+      }
+    }
+    nodes.forEach(function(n){ n.x=Math.max(n.w/2+16,Math.min(GW-n.w/2-16,n.x)); n.y=Math.max(40,Math.min(GH-52,n.y)); });
+  }
+  nodes[hub].x=cx; nodes[hub].y=cy;
+  edges.forEach(function(e,k){
+    var A=nodes[e.a],B=nodes[e.b],dx=B.x-A.x,dy=B.y-A.y,c=(k%2?1:-1)*0.09;
+    e.qx=(A.x+B.x)/2-dy*c; e.qy=(A.y+B.y)/2+dx*c;
+  });
+  G={nodes:nodes,edges:edges,idx:idx,hub:hub};
+}
+function drawGraph(){
+  if(!G) buildGraph();
+  var svg=$("#graph"); svg.setAttribute("viewBox","0 0 "+GW+" "+GH);
+  if(!G.drawn){ G.drawn=1; svg.classList.add("intro"); setTimeout(function(){svg.classList.remove("intro");},2800); }
+  var sel=state.gsel||state.ghov||null, nb={};
+  if(sel){ nb[sel]=true; G.edges.forEach(function(e){ var a=G.nodes[e.a].id,b=G.nodes[e.b].id; if(a===sel)nb[b]=true; if(b===sel)nb[a]=true; }); }
+  var cx=GW/2, cy=GH/2, h='<defs><radialGradient id="gbg" cx="50%" cy="50%" r="65%"><stop offset="0" stop-color="#1c2a38"/><stop offset="1" stop-color="#090d12"/></radialGradient></defs>';
+  h+='<rect width="'+GW+'" height="'+GH+'" fill="url(#gbg)"/>';
+  for(var r=120;r<GW*0.7;r+=120) h+='<circle class="gring" cx="'+cx+'" cy="'+cy+'" r="'+r+'"/>';
+  h+='<line class="gring" x1="0" y1="'+cy+'" x2="'+GW+'" y2="'+cy+'"/><line class="gring" x1="'+cx+'" y1="0" x2="'+cx+'" y2="'+GH+'"/>';
+  G.edges.forEach(function(e){
+    var A=G.nodes[e.a],B=G.nodes[e.b], hi = sel && (A.id===sel||B.id===sel);
+    h+='<path class="gedge'+(hi?' hi':(sel?' off':''))+'" d="M'+A.x.toFixed(1)+' '+A.y.toFixed(1)+' Q'+e.qx.toFixed(1)+' '+e.qy.toFixed(1)+' '+B.x.toFixed(1)+' '+B.y.toFixed(1)+'"/>';
+  });
+  G.nodes.forEach(function(n,ni){
+    var d=n.d, hubN=n.id==="ranki", r=hubN?26:Math.min(9+n.deg*0.9,19), c=CATS[d.cat][1];
+    var dim=sel&&!nb[n.id], on=sel===n.id, X=n.x.toFixed(1), Y=n.y.toFixed(1);
+    var core = d.type==="groupe"
+      ? '<rect class="gcore" x="'+(n.x-r).toFixed(1)+'" y="'+(n.y-r).toFixed(1)+'" width="'+2*r+'" height="'+2*r+'" rx="6" fill="'+c+'"/>'
+      : '<circle class="gcore" cx="'+X+'" cy="'+Y+'" r="'+r+'" fill="'+c+'"/>';
+    h+='<g class="gnode'+(dim?' dim':'')+(on?' on':'')+(hubN?' hub':'')+'" style="animation-delay:'+(ni*30)+'ms" tabindex="0" role="button" data-id="'+n.id+'" aria-label="'+esc(d.name)+'">'
+      +'<circle class="ghalo" cx="'+X+'" cy="'+Y+'" r="'+(r+9)+'" fill="'+c+'"/>'
+      +((on||hubN)?'<circle class="gsel" cx="'+X+'" cy="'+Y+'" r="'+(r+(hubN?10:7))+'"/>':'')
+      +core+'<text class="glab" text-anchor="middle" x="'+X+'" y="'+(n.y+r+17).toFixed(1)+'">'+esc(d.name)+'</text></g>';
+  });
+  if(sel) G.edges.forEach(function(e){
+    var A=G.nodes[e.a],B=G.nodes[e.b]; if(A.id!==sel&&B.id!==sel) return;
+    var t=A.id===sel?0.58:0.42,u=1-t, px=u*u*A.x+2*u*t*e.qx+t*t*B.x, py=u*u*A.y+2*u*t*e.qy+t*t*B.y, w=e.label.length*6+18;
+    h+='<g class="gpill"><rect x="'+(px-w/2).toFixed(1)+'" y="'+(py-11).toFixed(1)+'" width="'+w.toFixed(1)+'" height="22" rx="11"/><text text-anchor="middle" x="'+px.toFixed(1)+'" y="'+(py+4).toFixed(1)+'">'+esc(e.label)+'</text></g>';
+  });
+  svg.innerHTML=h;
+  $("#legend").innerHTML = Object.keys(CATS).filter(function(k){return k!=="hier";}).map(function(k){
+    return '<span class="lg"><span class="dot'+(k==="groupe"?' sq':'')+'" style="background:'+CATS[k][1]+'"></span>'+CATS[k][0]+'</span>';
+  }).join("")+'<span class="lg note">Carré : groupe · le cercle central : Apoffice</span>';
+  var info=$("#ginfo");
+  if(state.gsel){
+    var d=byId[state.gsel];
+    info.innerHTML='<div class="gi"><div class="gi-h"><span class="dot" style="background:'+CATS[d.cat][1]+'"></span><strong>'+esc(d.name)+'</strong><span class="gi-r">'+esc(d.role||d.alias)+'</span></div><div class="chips">'+d.links.map(function(l){return chipHtml(l[0],l[1]);}).join("")+'</div><p class="gi-b"><button class="btn" data-open="'+state.gsel+'">Ouvrir le dossier</button><button class="btn ghost" data-clear="1">Tout afficher</button></p></div>';
+  } else {
+    info.innerHTML='<span class="note">Survole ou touche un nom pour isoler ses liens, puis ouvre son dossier.</span>';
+  }
+}
+
+/* ---------- chronologie / à vérifier ---------- */
+function renderTL(){
+  var rows = T.slice().sort(function(a,b){return a[0]<b[0]?-1:a[0]>b[0]?1:0;});
+  $("#tl").innerHTML = rows.map(function(r){
+    return '<div class="d rv"><div class="dt">'+esc(r[1])+'</div><div class="ev">'+esc(r[2])+'</div><div class="chips">'+r[3].map(function(id){return chipHtml(id);}).join("")+'</div></div>';
+  }).join("");
+}
+function renderTodo(){
+  $("#todo").innerHTML = V.map(function(v){
+    return '<li class="rv"><strong>'+esc(v[0])+'.</strong> '+esc(v[1])+' '+chipHtml(v[2])+'</li>';
+  }).join("");
+}
+
+/* ---------- événements ---------- */
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-id],[data-view],[data-f],[data-open],[data-clear]"); if(!t) return;
+  if(t.dataset.clear){ state.gsel=null; state.ghov=null; drawGraph(); return; }
+  if(t.classList.contains("gnode")){ state.gsel = (state.gsel===t.dataset.id)?null:t.dataset.id; drawGraph(); return; }
+  if(t.dataset.open){ openDossier(t.dataset.open,true); return; }
+  if(t.dataset.view){ setView(t.dataset.view); return; }
+  if(t.dataset.f){ state.type=t.dataset.f; renderFilters(); renderList(); return; }
+  if(t.dataset.id){ openDossier(t.dataset.id, window.innerWidth<=820); }
+});
+document.addEventListener("keydown",function(e){
+  if((e.key==="Enter"||e.key===" ") && e.target.classList && e.target.classList.contains("gnode")){
+    e.preventDefault(); state.gsel=(state.gsel===e.target.dataset.id)?null:e.target.dataset.id; drawGraph();
+  }
+});
+(function(){var g=$("#graph");
+  g.addEventListener("pointerover",function(e){ var n=e.target.closest&&e.target.closest(".gnode"); var id=n?n.dataset.id:null; if(id!==state.ghov){ state.ghov=id; if(!state.gsel) drawGraph(); } });
+  g.addEventListener("pointerleave",function(){ if(state.ghov){ state.ghov=null; if(!state.gsel) drawGraph(); } });
+})();
+$("#q").addEventListener("input",function(e){ state.q=e.target.value.trim(); renderList(); });
+
+/* ---------- effets ---------- */
+function countUp(){ document.querySelectorAll(".counter b").forEach(function(b){ var n=parseInt(b.textContent,10); if(isNaN(n)) return; var t0=null; function st(t){ if(!t0)t0=t; var p=Math.min(1,(t-t0)/1400), e=1-Math.pow(1-p,3); b.textContent=Math.round(n*e); if(p<1) requestAnimationFrame(st); } requestAnimationFrame(st); }); }
+function reveal(){ var els=document.querySelectorAll(".rv"); if(!("IntersectionObserver" in window)){ els.forEach(function(e){e.classList.add("in");}); return; }
+  var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }); },{threshold:.12});
+  els.forEach(function(e,i){ e.style.transitionDelay=(i%5*90)+"ms"; io.observe(e); }); }
+function boot(cb){ var b=$("#boot"); if(!b){ cb(); return; }
+  var skip=false; try{ skip = !!sessionStorage.getItem("seen") || matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+  if(skip){ b.remove(); cb(); return; }
+  var L=["> Connexion au centre de renseignement…","> Identification… <span class=ok>OK</span>","> Niveau d'accès : restreint","> Déchiffrement des archives… <span class=ok>100 %</span>"];
+  var pre=$("#boot pre"), big=$("#boot .big"), i=0, done=false;
+  function end(){ if(done) return; done=true; b.classList.add("done"); try{ sessionStorage.setItem("seen","1"); }catch(e){} setTimeout(function(){ b.remove(); },900); cb(); }
+  b.addEventListener("click",end); document.addEventListener("keydown",end,{once:true});
+  (function next(){ if(done) return; if(i<L.length){ pre.innerHTML+=L[i++]+"\n"; setTimeout(next,520); } else { big.classList.add("on"); setTimeout(end,1200); } })(); }
+(function(){ try{ if(matchMedia("(hover:none)").matches) return; }catch(e){} var sp=$(".spot"), raf=0;
+  document.addEventListener("pointermove",function(e){ if(raf) return; raf=requestAnimationFrame(function(){ raf=0; sp.style.setProperty("--mx",e.clientX+"px"); sp.style.setProperty("--my",e.clientY+"px"); }); }); })();
+
+/* ---------- démarrage ---------- */
+try{ var h0=(location.hash||"").slice(1); if(h0 && byId[h0]) state.id=h0; }catch(e){}
+renderFilters(); renderList(); renderDetail(); renderTL(); renderTodo();
+try{ if(h0 && byId[h0]) setView("dossiers"); }catch(e){}
+reveal(); boot(countUp);
+</script>
+</body>
+</html>
+
+</body></html>
